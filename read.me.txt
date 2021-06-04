@@ -1,0 +1,18 @@
+A few notes on how to run the MSEB model, which is the model that is used in Fan and Dommenget (2021)
+*Fan, C. S., & Dommenget, D. (2021). A Diagnostic Model for The Large-Scale Tropical Circulation Based on Moist Static Energy Balance.
+
+1) Compling: you need a PYTHON compiler to compile the code. 
+
+2) You might need to install few packages (e.g. geopy, scipy, metpy) before running the code. In order to install package, for example, you can execute with the following command: 
+pip install geopy  
+
+3) Input data (e.g. ERA5) download script: era5.py 
+Please go to the documentation page (https://cds.climate.copernicus.eu/api-how-to) for information as to how to use the CDS API before running this script. 
+You can execute the script to compile and download data with the following command: 
+python era5.py
+
+4) MSEB model run script: mseb.model.py
+You can execute the script to compile and run the model with the following command: 
+python mseb.model.py
+
+5) Output from MSEB model is in .nc file format. 
