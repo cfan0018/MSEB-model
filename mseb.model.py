@@ -30,6 +30,7 @@
 #                log_exp=2 vertical velocity [Pa/s] of seasonal cycle (JJA minus DJF)   
 #                log_exp=3 vertical velocity [Pa/s] of El Nino year (El Nino case minus climatology)
 
+from copy import deepcopy as cp
 from geopy.distance import geodesic
 from scipy.interpolate import CubicSpline
 from scipy.integrate import simps
@@ -63,7 +64,7 @@ def deep_convec_mode(temp):
     while temp.level[pIdx-1] > ptop.magnitude:
         pIdx-=1 
     temp_tropic[pIdx-1] = temp_spline(ptop)
-    plev_new = temp.level[pIdx-1::].values
+    plev_new = cp(temp.level[pIdx-1::].values)
     plev_new[0] = ptop.magnitude
 
     # saturation specific humidity (q_sat) of eq.(A2) - Wills et al. (2017)
@@ -116,7 +117,7 @@ def mseb_model(slhf,sshf,snsr,sntr,tnsr,tntr,temp,shum,geop,uwnd,vwnd,dmode,ptop
     pIdx=0
     while temp.level[pIdx] > ptop:
         pIdx+=1 
-    plev = temp.level[0:pIdx+1].values
+    plev = cp(temp.level[0:pIdx+1].values)
     plev[pIdx] = ptop
             
     # interpolate data points to high-resolution tropopause pressure level 
