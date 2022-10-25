@@ -54,7 +54,7 @@ def deep_convec_mode(temp):
     zHiRes=calc.pressure_to_height_std(pHiRes).magnitude
 
     # define tropopause as the lowest level at which the lapse rate >= -2 K/km in high-resolution vertical temperature profile
-    i=0
+    i=500 # start searching from mid atmosphere to avoid misestimation at lower atmosphere due to temperature variation 
     while ( float ( ( (temp_spline(pHiRes[splinePts-2-i-1]) - temp_spline(pHiRes[splinePts-2-i]))/ (zHiRes[splinePts-2-i-1]-zHiRes[splinePts-2-i]) ) ) ) <= (-2.0):
         ptop=pHiRes[splinePts-2-i]
         i+=1
